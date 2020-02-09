@@ -1,0 +1,79 @@
+<form [formGroup]="checkInForm" style="text-align: center;">
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Name
+    </mat-label>
+    <input [(ngModel)]="vehicle.Name" matInput id="name" type="text" formControlName="name"
+      placeholder="Simple placeholder">
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      License Plate ID
+    </mat-label>
+    <input [(ngModel)]="vehicle.LicensePlateID" matInput id="LicensePlateId" type="number"
+      formControlName="LicensePlateId">
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Phone Number
+    </mat-label>
+    <input [(ngModel)]="vehicle.PhoneNumber" matInput id="PhoneNumber" type="tel" formControlName="PhoneNumber">
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Vehicle Type
+    </mat-label>
+    <mat-select formControlName="VehicleType">
+      <mat-option *ngFor="let vType of vehicleTypes" [value]="vType">{{vType}}</mat-option>
+    </mat-select>
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Ticket Type
+    </mat-label>
+    <mat-select #ticketTypeControl formControlName="TicketType">
+      <mat-option *ngFor="let ticket of ticketTypes" [value]="ticket">{{ticket}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button *ngIf="ticketTypeControl.value" mat-raised-button type="button" (click)="openTicketView()">View
+    Details</button>
+
+  <br *ngIf="ticketTypeControl.value">
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Height
+    </mat-label>
+    <input [(ngModel)]="vehicle.Height" matInput id="Height" type="number" formControlName="Height">
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Width
+    </mat-label>
+    <input [(ngModel)]="vehicle.Width" matInput id="Width" type="number" formControlName="Width">
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="standard">
+    <mat-label for="Length">
+      Length
+    </mat-label>
+    <input [(ngModel)]="vehicle.Length" matInput id="Length" type="number" formControlName="Length">
+  </mat-form-field><br>
+
+  <button mat-raised-button class="button" type="submit" (click)="onSubmit()">Check In</button>
+
+
+</form>

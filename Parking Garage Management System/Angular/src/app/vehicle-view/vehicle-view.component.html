@@ -1,0 +1,27 @@
+<mat-card *ngIf="vehicle != null">
+  <mat-card-title mat-dialog-title>{{vehicle.Name}} - {{vehicle.LicensePlateID}} </mat-card-title>
+  <mat-dialog-content>
+    <mat-card-content>
+      <p>Name: {{vehicle.Name}}</p>
+
+
+      <p>License Plate ID: {{vehicle.LicensePlateID}}</p>
+
+      <p>Phone: {{vehicle.PhoneNumber}}</p>
+
+      <p>Vehicle Type: {{vehicle.VehicleType |enumConverter:"VehicleClass"}}</p>
+
+      <p>Checked In With {{vehicle.TicketType | enumConverter:"Ticket"}} Ticket</p>
+
+      <p>Dimensions (in Cm):<br>
+        Height: {{vehicle.Height}}<br>
+        Width: {{vehicle.Width}}<br>
+        Length: {{vehicle.Length}}</p>
+
+      <p>Parked At Lot Number: {{vehicle.LotNumber}}</p>
+    </mat-card-content>
+  </mat-dialog-content>
+  <mat-dialog-actions *ngIf="data.vehicleId">
+    <button mat-raised-button type="button" (click)="checkOut()">Check-Out</button>
+  </mat-dialog-actions>
+</mat-card>

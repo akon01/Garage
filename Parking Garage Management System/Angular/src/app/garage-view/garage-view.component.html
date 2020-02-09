@@ -1,0 +1,50 @@
+<div>
+  <h3 style="text-align: center;">
+    Filter By:
+  </h3>
+  <form [formGroup]="filterForm" style="text-align: center;">
+    <mat-form-field>
+      <mat-select formControlName="FilterSelect" id="filterSelect" (selectionChange)="onFilterChange()">
+        <mat-option selected value="All">
+          View All Lots
+        </mat-option>
+        <mat-option value="Type">
+          View Lots By Ticket Type
+        </mat-option>
+        <mat-option value="Empty">
+          View Empty Lots
+        </mat-option>
+        <mat-option value="Full">
+          View Full Lots
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="filterType == 'Type'">
+      <div>
+        <mat-select formControlName="TypeSelect" id="TypeSelect" (selectionChange)="onFilterChange()">
+          <mat-option *ngFor="let type of ticketTypeKeys" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </div>
+    </mat-form-field>
+  </form>
+</div>
+
+
+<div *ngIf="lots.length > 0">
+  <ul>
+    <li *ngFor="let lot of lots">Lot number: {{lot.number}}
+      <div *ngIf="lot.vehicle">
+        <app-vehicle-view [vehicleLicenseId]="lot.vehicle.LicensePlateID"></app-vehicle-view>
+
+      </div>
+      <div *ngIf="!lot.vehicle">
+        No Vehicle Parked.
+      </div>
+    </li>
+  </ul>
+</div>
+<div *ngIf="lots.length == 0">
+
+</div>

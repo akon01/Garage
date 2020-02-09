@@ -1,0 +1,10 @@
+<br>
+<button style="text-align: center;" mat-raised-button (click)="testAsyncCheckIn()">Click Me To Test Async Check-In Of 5
+  Vehicles </button>
+<div *ngIf="vehicles.length > 0">
+  <li>
+    <ul *ngFor="let vehicle of vehicles">
+      <app-vehicle-view [vehicleLicenseId]="vehicle.LicensePlateID"></app-vehicle-view>
+    </ul>
+  </li>
+</div>

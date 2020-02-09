@@ -1,0 +1,44 @@
+<mat-card *ngIf="ticket">
+  <mat-card-title>{{ticket.Type |enumConverter:"Ticket"}} Ticket
+  </mat-card-title>
+  <mat-card-content>
+    <div>Lots: {{ticket.Lots[0]}} - {{ticket.Lots[ticket.Lots.length-1]}} </div><br>
+    <div>Allowed Dimentions:
+      <mat-card>
+        <mat-card-content>
+          Height: {{ticket.Dimentions.Height | zeroToInfinit}} cm <br>
+          Width: {{ticket.Dimentions.Width | zeroToInfinit}} cm<br>
+          Length: {{ticket.Dimentions.Length | zeroToInfinit}} cm<br>
+        </mat-card-content>
+      </mat-card>
+    </div><br>
+    <div>Allowed Vehicle Classes:
+      <mat-card>
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let class of ticket.VehicleClasses">
+              {{class |enumConverter:"VehicleClass"}}</li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div><br>
+    <div>Time Limit(Hours): {{ticket.TimeLimit | zeroToInfinit}} </div><br>
+    <div>Cost: {{ticket.Cost}} $
+      <div style="color: red;" *ngIf="ticketToUpgradeFrom">
+        Previus Ticket Cost: {{ticketToUpgradeFrom.Cost}} $<br>
+        Difrrence: {{ticket.Cost-ticketToUpgradeFrom.Cost}} $
+      </div>
+    </div><br>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button *ngIf="isForUpgrade" mat-raised-button type="button" (click)="getNextValueTicket()">Upgrade Ticket </button>
+    <button *ngIf="ticketToUpgradeFrom" mat-raised-button type="button" (click)="confirm()">Check-In Using This
+      Ticket</button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <div style="color: red;" *ngIf="isForUpgrade">
+      {{ errorString }}
+    </div>
+  </mat-card-footer>
+</mat-card>

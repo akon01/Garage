@@ -1,0 +1,12 @@
+<form [formGroup]="checkOutForm" style="text-align: center;">
+  <mat-form-field appearance="standard">
+    <mat-label>
+      Parked Car License Plate ID
+    </mat-label>
+    <input matInput id="plateId" type="number" formControlName="plateId" placeholder="123456789">
+  </mat-form-field>
+  <button mat-raised-button class="button" (click)="onSubmit()">View Car Details </button>
+</form>
+<br>
+<!-- <app-vehicle-view *ngIf="selectedVehicle" [vehicleLicenseId]="selectedVehicle.LicensePlateID"></app-vehicle-view> -->
+<!-- <button mat-raised-button *ngIf="selectedVehicle" type="button" (click)="checkOut()">Confirm Check-Out</button> -->
